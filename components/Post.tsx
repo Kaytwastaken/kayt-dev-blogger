@@ -1,5 +1,6 @@
 import Router from "next/router";
 import ReactMarkdown from "react-markdown";
+import gfm from 'remark-gfm';
 import { useSession } from 'next-auth/client'
 
 export type PostProps = {
@@ -83,7 +84,7 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
 			<p><b>Dates: </b>{dates ? dates : "null"}</p>
 			<p><b>Excerpt: </b>{post.excerpt ? post.excerpt : "(Forced) " + forcedExcerpt}</p>
 			<p><b>Content:</b></p>
-			<ReactMarkdown children={post.content} />
+			<ReactMarkdown remarkPlugins={[gfm]} children={post.content} />
 		</div>
 	);
 };
